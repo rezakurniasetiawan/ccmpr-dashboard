@@ -114,6 +114,7 @@ class GamePlay2Resource extends Resource
                     })
                     ->color('success')
                     ->button()
+                    ->hidden(fn(gamePlay2 $record) => $record->pro_kontra == null)
                     ->icon('heroicon-o-plus'),
 
             ])
