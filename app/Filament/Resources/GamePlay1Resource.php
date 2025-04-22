@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
-use App\Models\GamePlay1;
+use App\Models\gamePlay1;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Notifications\Notification;
@@ -16,7 +16,7 @@ use App\Filament\Resources\GamePlay1Resource\RelationManagers;
 
 class GamePlay1Resource extends Resource
 {
-    protected static ?string $model = GamePlay1::class;
+    protected static ?string $model = gamePlay1::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -58,9 +58,9 @@ class GamePlay1Resource extends Resource
                             ->required()
                             ->numeric()
                             ->minValue(0)
-                            ->default(fn(GamePlay1 $record) => $record->score ?? 0),
+                            ->default(fn(gamePlay1 $record) => $record->score ?? 0),
                     ])
-                    ->action(function (GamePlay1 $record, array $data) {
+                    ->action(function (gamePlay1 $record, array $data) {
                         $record->update([
                             'score' => $data['score'],
                         ]);
