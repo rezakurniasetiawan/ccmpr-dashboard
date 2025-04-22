@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
-use App\Models\GamePlayDua;
+use App\Models\GamePlay2;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Notifications\Notification;
@@ -16,7 +16,7 @@ use App\Filament\Resources\GamePlay2Resource\RelationManagers;
 
 class GamePlay2Resource extends Resource
 {
-    protected static ?string $model = GamePlayDua::class;
+    protected static ?string $model = GamePlay2::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -65,10 +65,10 @@ class GamePlay2Resource extends Resource
                                 'pro' => 'Pro',
                                 'kontra' => 'Kontra',
                             ])
-                            ->default(fn(GamePlayDua $record) => $record->pro_kontra ?? 'pro')
+                            ->default(fn(GamePlay2 $record) => $record->pro_kontra ?? 'pro')
                             ->required(),
                     ])
-                    ->action(function (GamePlayDua $record, array $data) {
+                    ->action(function (GamePlay2 $record, array $data) {
                         $record->update([
                             'pro_kontra' => $data['pro_kontra'],
                         ]);
@@ -92,9 +92,9 @@ class GamePlay2Resource extends Resource
                             ->required()
                             ->numeric()
                             ->minValue(0)
-                            ->default(fn(GamePlayDua $record) => $record->score ?? 0),
+                            ->default(fn(GamePlay2 $record) => $record->score ?? 0),
                     ])
-                    ->action(function (GamePlayDua $record, array $data) {
+                    ->action(function (GamePlay2 $record, array $data) {
                         $record->update([
                             'score' => $data['score'],
                         ]);
