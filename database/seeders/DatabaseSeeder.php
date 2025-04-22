@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\GamePlayDua;
-use App\Models\gamePlaySatu;
+use App\Models\GamePlaySatu;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($gamePlays as $gamePlay) {
-            gamePlaySatu::create($gamePlay);
+            GamePlaySatu::create($gamePlay);
         }
 
         $gamePlays2 = [

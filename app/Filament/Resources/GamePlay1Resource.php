@@ -16,7 +16,7 @@ use App\Models\gamePlaySatu;
 
 class GamePlay1Resource extends Resource
 {
-    protected static ?string $model = gamePlaySatu::class;
+    protected static ?string $model = GamePlaySatu::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -58,9 +58,9 @@ class GamePlay1Resource extends Resource
                             ->required()
                             ->numeric()
                             ->minValue(0)
-                            ->default(fn(gamePlaySatu $record) => $record->score ?? 0),
+                            ->default(fn(GamePlaySatu $record) => $record->score ?? 0),
                     ])
-                    ->action(function (gamePlaySatu $record, array $data) {
+                    ->action(function (GamePlaySatu $record, array $data) {
                         $record->update([
                             'score' => $data['score'],
                         ]);
