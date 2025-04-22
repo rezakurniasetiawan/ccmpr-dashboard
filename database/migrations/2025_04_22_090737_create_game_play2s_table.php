@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quiz_games', function (Blueprint $table) {
+        Schema::create('game_play2s', function (Blueprint $table) {
             $table->id();
+            $table->string('winner')->nullable();
+            $table->string('pro_kontra')->nullable();
+            $table->integer('score')->default(0);
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('quiz_games');
+        Schema::dropIfExists('game_play2s');
     }
 };
