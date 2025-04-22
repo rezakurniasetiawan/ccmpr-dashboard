@@ -34,6 +34,12 @@ class GamePlay2Resource extends Resource
                         'kontra' => 'Kontra',
                     ])
                     ->required(),
+
+                Forms\Components\TextInput::make('score')
+                    ->required()
+                    ->numeric()
+                    ->minValue(0)
+                    ->default(0),
             ]);
     }
 
