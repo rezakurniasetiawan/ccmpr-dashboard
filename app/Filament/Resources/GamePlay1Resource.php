@@ -5,7 +5,6 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
-use App\Models\GamePlay1;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Notifications\Notification;
@@ -13,10 +12,11 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\GamePlay1Resource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\GamePlay1Resource\RelationManagers;
+use App\Models\gamePlaySatu;
 
 class GamePlay1Resource extends Resource
 {
-    protected static ?string $model = GamePlay1::class;
+    protected static ?string $model = gamePlaySatu::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -58,9 +58,9 @@ class GamePlay1Resource extends Resource
                             ->required()
                             ->numeric()
                             ->minValue(0)
-                            ->default(fn(GamePlay1 $record) => $record->score ?? 0),
+                            ->default(fn(gamePlaySatu $record) => $record->score ?? 0),
                     ])
-                    ->action(function (GamePlay1 $record, array $data) {
+                    ->action(function (gamePlaySatu $record, array $data) {
                         $record->update([
                             'score' => $data['score'],
                         ]);

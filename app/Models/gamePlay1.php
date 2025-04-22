@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class gamePlay1 extends Model
+class gamePlaySatu extends Model
 {
     // $table->string('winner')->nullable();
     // $table->integer('score')->default(0);

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class gamePlay2 extends Model
+class GamePlayDua extends Model
 {
     // $table->string('winner')->nullable();
     // $table->string('pro_kontra')->nullable();
