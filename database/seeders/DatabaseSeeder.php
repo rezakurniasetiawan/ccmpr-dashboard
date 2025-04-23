@@ -36,10 +36,9 @@ class DatabaseSeeder extends Seeder
         }
 
         $gamePlays2 = [
-            ['winner' => 'Winner 1', 'pro_kontra' => '', 'score' => 0],
-            ['winner' => 'Winner 2', 'pro_kontra' => '', 'score' => 0],
-            ['winner' => 'Winner 3', 'pro_kontra' => '', 'score' => 0],
-            ['winner' => 'Winner 4', 'pro_kontra' => '', 'score' => 0],
+            ['winner' => 'Box 1', 'pro_kontra' => '', 'score' => 0],
+            ['winner' => 'Box 2', 'pro_kontra' => '', 'score' => 0],
+            ['winner' => 'Box 3', 'pro_kontra' => '', 'score' => 0],
         ];
         foreach ($gamePlays2 as $gamePlay) {
             gamePlay2::create($gamePlay);
