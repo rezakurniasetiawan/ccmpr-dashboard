@@ -19,6 +19,7 @@ class GamePlay2Resource extends Resource
     protected static ?string $model = gamePlay2::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'GamePlay';
 
     public static function form(Form $form): Form
     {

@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Schools extends Model
+{
+    // $table->string('name');
+    // $table->string('city');
+    protected $fillable = [
+        'name',
+        'city',
+    ];
+}

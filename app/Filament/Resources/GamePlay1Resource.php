@@ -20,6 +20,8 @@ class GamePlay1Resource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'GamePlay';
+
     public static function form(Form $form): Form
     {
         return $form
