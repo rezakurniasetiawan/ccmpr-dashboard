@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->nullable()->constrained()->onDelete('cascade'); // untuk sesi 3
-            $table->foreignId('statement_id')->nullable()->constrained()->onDelete('cascade'); // untuk sesi 2
+            $table->foreignId('theme_id')->nullable()->constrained()->onDelete('set null'); // untuk sesi 1
             $table->text('answer_text');
+            $table->boolean('is_correct')->default(false);
             $table->timestamps();
         });
     }

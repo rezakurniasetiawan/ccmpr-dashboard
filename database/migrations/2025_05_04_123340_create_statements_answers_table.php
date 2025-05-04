@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schools', function (Blueprint $table) {
+        Schema::create('statements_answers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('city');
+            $table->foreignId('statements_id')->constrained('statements')->onDelete('cascade');
+            $table->enum('type', ['pro', 'kontra']);
+            $table->text('answer_text');
+            $table->boolean('is_correct')->default(false);
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schools');
+        Schema::dropIfExists('statements_answers');
     }
 };

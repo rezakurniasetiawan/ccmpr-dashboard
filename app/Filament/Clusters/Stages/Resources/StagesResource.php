@@ -40,6 +40,7 @@ class StagesResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->paginated(false)
             ->columns([
                 Tables\Columns\TextColumn::make('province.name')
                     ->sortable()
@@ -67,10 +68,8 @@ class StagesResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-            ])
-            ->bulkActions([
-            ]);
+            ->actions([])
+            ->bulkActions([]);
     }
 
     public static function getRelations(): array
@@ -85,7 +84,7 @@ class StagesResource extends Resource
         return [
             'index' => Pages\ListStages::route('/'),
             // 'create' => Pages\CreateStages::route('/create'),
-            // 'edit' => Pages\EditStages::route('/{record}/edit'),
+            'edit' => Pages\EditStages::route('/{record}/edit'),
         ];
     }
 }

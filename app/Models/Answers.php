@@ -6,21 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answers extends Model
 {
-    // $table->foreignId('question_id')->nullable()->constrained()->onDelete('cascade'); // untuk sesi 3
-    // $table->foreignId('statement_id')->nullable()->constrained()->onDelete('cascade'); // untuk sesi 2
-    // $table->text('answer_text');
+    // $table->foreignId('theme_id')->nullable()->constrained()->onDelete('set null'); // untuk sesi 1
+    //         $table->text('answer_text');
 
     protected $fillable = [
-        'question_id',
-        'statement_id',
+        'theme_id',
         'answer_text',
+        'is_correct',
     ];
-    public function question()
+
+    public function theme()
     {
-        return $this->belongsTo(Themes::class);
+        return $this->belongsTo(Themes::class, 'theme_id');
     }
-    public function statement()
-    {
-        return $this->belongsTo(Statements::class);
-    }
+  
 }

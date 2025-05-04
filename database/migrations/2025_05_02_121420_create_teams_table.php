@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('school_id')->constrained()->onDelete('cascade');
             $table->string('team_name');
+            $table->string('school_name');
+            $table->integer('score_sesi1')->nullable();
+            $table->integer('score_sesi2')->nullable();
+            $table->integer('score_sesi3')->nullable();
+            $table->integer('total_score_before')->nullable();
+            $table->integer('total_score_after')->nullable();
             $table->timestamps();
         });
     }

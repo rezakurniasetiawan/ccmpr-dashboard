@@ -2,11 +2,39 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SesiController;
 use App\Http\Controllers\GamePlay1Controller;
 use App\Http\Controllers\GamePlay2Controller;
-
-
-
+use App\Http\Controllers\GamePlay3Controller;
+use App\Http\Controllers\PenyisihanController;
 
 Route::get('/game1', [GamePlay1Controller::class, 'index']);
 Route::get('/game2', [GamePlay2Controller::class, 'index']);
+
+Route::get('/penyisihan', [PenyisihanController::class, 'index']);
+
+// Where stage_id (penyisihan_id) is the id of penyisihan
+Route::get('/sesi/{id}', [SesiController::class, 'index']);
+
+// Game Play 1
+Route::prefix('sesi1')->group(function () {
+    // Where stageSession_id (sesi_id) is the id of stageSession
+    Route::get('/theme/{id}', [GamePlay1Controller::class, 'getTheme']);
+    // Where themes_id (theme_id) is the id of themes
+    Route::get('/theme-answer/{id}', [GamePlay1Controller::class, 'getThemeAnswer']);
+});
+
+
+// Game Play 2
+Route::prefix('sesi2')->group(function () {
+    // Where stageSession_id (sesi_id) is the id of stageSession
+    Route::get('/statements/{id}', [GamePlay2Controller::class, 'getStatements']);
+    Route::post('/statements-answer', [GamePlay2Controller::class, 'getStatementsAnswers']);
+});
+
+
+// Game Play 3
+Route::prefix('sesi3')->group(function () {
+    // Where stageSession_id (sesi_id) is the id of stageSession
+    Route::get('/{id}', [GamePlay3Controller::class, 'index']);
+});

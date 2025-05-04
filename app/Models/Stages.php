@@ -12,6 +12,7 @@ class Stages extends Model
     protected $fillable = [
         'province_id',
         'name',
+        'kode',
     ];
 
     public function province()

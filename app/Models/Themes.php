@@ -6,24 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Themes extends Model
 {
-    // $table->foreignId('theme_id')->nullable()->constrained()->onDelete('set null');
-    // $table->foreignId('session_id')->constrained()->onDelete('cascade');
+    // $table->foreignId('stage_id')->constrained()->onDelete('cascade');
+    // $table->foreignId('session_id')->constrained('stage_sessions')->onDelete('cascade');
+    // $table->text('thema_text');
     // $table->text('question_text');
 
 
     protected $fillable = [
-        'theme_id',
+        'stage_id',
         'session_id',
+        'thema_text',
         'question_text',
     ];
 
-    public function session()
+    public function stage()
     {
-        return $this->belongsTo(StageSession::class);
+        return $this->belongsTo(Stages::class);
     }
 
-    public function theme()
+    public function session()
     {
-        return $this->belongsTo(Themes::class);
+        return $this->belongsTo(StageSession::class, 'session_id');
+    }
+
+    //answer
+    public function Answers()
+    {
+        return $this->hasMany(Answers::class, 'theme_id');
     }
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('stages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('province_id')->constrained()->onDelete('cascade');
+            $table->string('kode')->unique(); // P1, P2, P3, F
             $table->string('name'); // Penyisihan 1, 2, 3, Final
             $table->timestamps();
         });

@@ -23,7 +23,13 @@ class Penyisihan2Resource extends Resource
 
     protected static ?string $cluster = Stages::class;
 
-    protected static ?string $navigationLabel = 'Penyisihan 2';
+    public static function getNavigationLabel(): string
+    {
+        $data =  StageSession::join('stages', 'stage_id', '=', 'stages.id')
+            ->where('stages.kode', 'P2')
+            ->first();
+        return  $data->name;
+    }
 
     protected static ?int $navigationSort = 3;
 
@@ -46,32 +52,59 @@ class Penyisihan2Resource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->paginated(false)
             ->query(StageSession::join('stages', 'stage_id', '=', 'stages.id')
-                ->where('stages.name', 'Penyisihan 2')
+                ->where('stages.kode', 'P2')
                 ->select('stage_sessions.*'))
             ->columns([
                 Tables\Columns\TextColumn::make('stage.name')
                     ->sortable()
-                    ->searchable()
                     ->label('Stage Name'),
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()
                     ->badge()
                     ->color('info')
-                    ->searchable()
-                    ->label('Penyisihan 2 Name'),
+                    ->label('Sesion Name'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('themes')
+                    ->button()
+                    ->icon('heroicon-o-arrow-right')
+                    ->visible(fn($record) => preg_replace('/\D/', '', $record->name) === '1')
+                    ->label('Lanjutan')
+                    ->url(fn($record) => route('filament.dashboard.resources.themes.index', [
+                        'stage_id' => $record->stage_id,
+                        'sesi' => preg_replace('/\D/', '', $record->name),
+                        'stage_session_id' => $record->id,
+                    ]))
+                    ->color('success'),
+                Tables\Actions\Action::make('statement')
+                    ->button()
+                    ->icon('heroicon-o-arrow-right')
+                    ->visible(fn($record) => preg_replace('/\D/', '', $record->name) === '2')
+                    ->label('Lanjutan')
+                    ->url(fn($record) => route('filament.dashboard.resources.statements.index', [
+                        'stage_id' => $record->stage_id,
+                        'sesi' => preg_replace('/\D/', '', $record->name),
+                        'stage_session_id' => $record->id,
+                    ]))
+                    ->color('info'),
+                Tables\Actions\Action::make('question_answer')
+                    ->button()
+                    ->icon('heroicon-o-arrow-right')
+                    ->visible(fn($record) => preg_replace('/\D/', '', $record->name) === '3')
+                    ->label('Lanjutan')
+                    ->url(fn($record) => route('filament.dashboard.resources.questions-answers.index', [
+                        'stage_id' => $record->stage_id,
+                        'sesi' => preg_replace('/\D/', '', $record->name),
+                        'stage_session_id' => $record->id,
+                    ]))
+                    ->color('danger'),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->bulkActions([]);
     }
 
     public static function getRelations(): array
@@ -85,8 +118,6 @@ class Penyisihan2Resource extends Resource
     {
         return [
             'index' => Pages\ListPenyisihan2s::route('/'),
-            'create' => Pages\CreatePenyisihan2::route('/create'),
-            'edit' => Pages\EditPenyisihan2::route('/{record}/edit'),
         ];
     }
 }

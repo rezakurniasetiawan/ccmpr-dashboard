@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('stage_id')->constrained()->onDelete('cascade');
             $table->foreignId('session_id')->constrained('stage_sessions')->onDelete('cascade');
-            $table->string('title');
+            $table->text('thema_text');
+            $table->text('question_text');
             $table->timestamps();
         });
     }

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('statements', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('stage_id')->constrained()->onDelete('cascade');
             $table->foreignId('session_id')->constrained('stage_sessions')->onDelete('cascade');
-            $table->enum('type', ['pro', 'contra']);
+            $table->string('box_name');
             $table->text('statement_text');
             $table->timestamps();
         });
