@@ -38,8 +38,8 @@ class TeamsResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('team_name')
-                    ->label('Team Name')
+                Forms\Components\TextInput::make('school_name')
+                    ->label('School Name')
                     ->required()
                     ->maxLength(255)
 
