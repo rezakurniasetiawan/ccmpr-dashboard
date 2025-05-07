@@ -61,14 +61,26 @@ class StagesResource extends Resource
             ])->filters([
                 //
             ])->actions([
-                //
+                // edit action
+                Tables\Actions\EditAction::make()
+                    ->label('Edit')
+                    ->button()
+                    ->icon('heroicon-o-pencil')
+                    ->color('primary'),
+                Tables\Actions\Action::make('teams')
+                    ->button()
+                    ->icon('heroicon-o-arrow-right')
+                    ->label('Teams')
+                    ->url(fn($record) => route('filament.dashboard.resources.teams.index', [
+                        'stage_id' => $record->id,
+                    ]))
+                    ->color('danger'),
             ])->bulkActions([
                 //
             ])
             ->filters([
                 //
             ])
-            ->actions([])
             ->bulkActions([]);
     }
 

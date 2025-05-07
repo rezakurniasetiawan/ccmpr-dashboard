@@ -84,9 +84,19 @@ class DatabaseSeeder extends Seeder
 
 
         $teams = [
-            ['team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
-            ['team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
-            ['team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
+            ['stage_id' => $stageIds['Penyisihan 1'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
+            ['stage_id' => $stageIds['Penyisihan 1'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
+            ['stage_id' => $stageIds['Penyisihan 1'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
+            ['stage_id' => $stageIds['Penyisihan 2'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
+            ['stage_id' => $stageIds['Penyisihan 2'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
+            ['stage_id' => $stageIds['Penyisihan 2'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
+            ['stage_id' => $stageIds['Penyisihan 3'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
+            ['stage_id' => $stageIds['Penyisihan 3'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
+            ['stage_id' => $stageIds['Penyisihan 3'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
+            ['stage_id' => $stageIds['Final'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
+            ['stage_id' => $stageIds['Final'], 'team_name' => 'Grup 10', 'school_name' => 'Sekolah 2'],
+            ['stage_id' => $stageIds['Final'], 'team_name' => 'Grup 11', 'school_name' => 'Sekolah 3'],
+
         ];
         foreach ($teams as $item) {
             Teams::create($item);

@@ -7,6 +7,7 @@ use Filament\Tables;
 use App\Models\Teams;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\ScoreS3Team;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Section;
@@ -21,6 +22,17 @@ class TeamsResource extends Resource
     protected static ?string $model = Teams::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static bool $shouldRegisterNavigation = false;
+
+    public static ?string $label = 'Team -';
+
+    public static function getLabel(): string
+    {
+        $stageId = session('stage_id', 'default_stage');
+        $stageName = \App\Models\Stages::find($stageId)->name ?? 'Unknown Stage';
+        return self::$label . ' ' . $stageName;
+    }
 
     public static function form(Form $form): Form
     {
@@ -54,6 +66,11 @@ class TeamsResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(
+                Teams::query()
+                    ->where('stage_id', session('stage_id'))
+                    ->orderBy('created_at', 'desc')
+            )
             ->columns([
                 Tables\Columns\TextColumn::make('team_name')
                     ->label('Team')
@@ -71,6 +88,7 @@ class TeamsResource extends Resource
                 Tables\Columns\TextColumn::make('score_sesi3')
                     ->badge()
                     ->color('info')
+                    ->description(fn($record) => ScoreS3Team::where('team_id', $record->id)->pluck('score')->implode(', '))
                     ->label('Score S3'),
                 Tables\Columns\TextColumn::make('total_score_before')
                     ->badge()
@@ -185,16 +203,35 @@ class TeamsResource extends Resource
                                     ])
                                     ->inline(true)
                                     ->columns(6)
-                                    ->default(fn($record) => $record->score_sesi3), // Set default value
                             ]),
                     ])
                     ->action(function ($record, $data) {
-                        $record->update(['score_sesi3' => $data['score']]);
 
-                        // Update total_score_before if all scores are not null
+                        // create new ScoreS3Team record
+                        // Calculate total score from ScoreS3Team based on team_id
+                        // Create a new ScoreS3Team record first
+                        $lastScoreS3Team = ScoreS3Team::where('team_id', $record->id)
+                            ->orderBy('urutan', 'desc')
+                            ->first();
+
+                        $newUrutan = $lastScoreS3Team ? $lastScoreS3Team->urutan + 1 : 1;
+
+                        $scoreS3Team = new ScoreS3Team();
+                        $scoreS3Team->team_id = $record->id;
+                        $scoreS3Team->score = $data['score'];
+                        $scoreS3Team->urutan = $newUrutan; // Set urutan based on the last record
+                        $scoreS3Team->save();
+
+                        // Calculate the total score from ScoreS3Team based on team_id
+                        $totalScoreS3 = ScoreS3Team::where('team_id', $record->id)->sum('score');
+
+                        // Update score_sesi3 with the calculated total score
+                        $record->update(['score_sesi3' => $totalScoreS3]);
+
+                        // Update total_score_before by recalculating all scores
                         $scoreSesi1 = $record->score_sesi1 ?? 0;
                         $scoreSesi2 = $record->score_sesi2 ?? 0;
-                        $scoreSesi3 = $record->score_sesi3 ?? 0;
+                        $scoreSesi3 = $totalScoreS3;
 
                         $totalScoreBefore = $scoreSesi1 + $scoreSesi2 + $scoreSesi3;
                         $record->update(['total_score_before' => $totalScoreBefore]);
@@ -214,6 +251,11 @@ class TeamsResource extends Resource
                         $scoreSesi1 = $record->score_sesi1 ?? 0;
                         $scoreSesi2 = $record->score_sesi2 ?? 0;
                         $scoreSesi3 = $record->score_sesi3 ?? 0;
+
+                        // Ensure no negative scores are used in the calculation
+                        $scoreSesi1 = max(0, $scoreSesi1);
+                        $scoreSesi2 = max(0, $scoreSesi2);
+                        $scoreSesi3 = max(0, $scoreSesi3);
 
                         // Calculate weighted total score
                         $totalScoreAfter = ($scoreSesi1 * 0.2) + ($scoreSesi2 * 0.3) + ($scoreSesi3 * 0.5);

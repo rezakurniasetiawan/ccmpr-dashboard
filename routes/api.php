@@ -7,6 +7,7 @@ use App\Http\Controllers\GamePlay1Controller;
 use App\Http\Controllers\GamePlay2Controller;
 use App\Http\Controllers\GamePlay3Controller;
 use App\Http\Controllers\PenyisihanController;
+use App\Http\Controllers\TeamsController;
 
 Route::get('/game1', [GamePlay1Controller::class, 'index']);
 Route::get('/game2', [GamePlay2Controller::class, 'index']);
@@ -15,6 +16,8 @@ Route::get('/penyisihan', [PenyisihanController::class, 'index']);
 
 // Where stage_id (penyisihan_id) is the id of penyisihan
 Route::get('/sesi/{id}', [SesiController::class, 'index']);
+Route::get('/teams/{id}', [TeamsController::class, 'getTeams']);
+
 
 // Game Play 1
 Route::prefix('sesi1')->group(function () {
