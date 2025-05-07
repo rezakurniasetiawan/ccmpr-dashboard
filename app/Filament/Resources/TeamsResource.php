@@ -38,27 +38,11 @@ class TeamsResource extends Resource
     {
         return $form
             ->schema([
-                // Section::make('Team')
-                //     ->description('Team Information')
-                //     ->schema([
-                //         Radio::make('score')
-                //             ->label('Pilih Score')
-                //             ->options([
-                //                 '0' => '0',
-                //                 '10' => '10',
-                //                 '20' => '20',
-                //                 '30' => '30',
-                //                 '40' => '40',
-                //                 '50' => '50',
-                //                 '60' => '60',
-                //                 '70' => '70',
-                //                 '80' => '80',
-                //                 '90' => '90',
-                //                 '100' => '100',
-                //             ])
-                //             ->inline(true)
-                //             ->columns(6)
-                //     ]),
+                Forms\Components\TextInput::make('team_name')
+                    ->label('Team Name')
+                    ->required()
+                    ->maxLength(255)
+                    ->disabled()
 
             ]);
     }
