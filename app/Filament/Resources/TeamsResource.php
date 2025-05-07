@@ -42,7 +42,6 @@ class TeamsResource extends Resource
                     ->label('Team Name')
                     ->required()
                     ->maxLength(255)
-                    ->disabled()
 
             ]);
     }
