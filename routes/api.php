@@ -13,7 +13,7 @@ Route::get('/game1', [GamePlay1Controller::class, 'index']);
 Route::get('/game2', [GamePlay2Controller::class, 'index']);
 
 Route::get('/penyisihan', [PenyisihanController::class, 'index']);
-Route::get('/decision-letter', [PenyisihanController::class, 'getDecisionLetter']);
+Route::get('/decision-letter/{id}', [PenyisihanController::class, 'getDecisionLetter']);
 
 // Where stage_id (stage_id) is the id of penyisihan
 Route::get('/sesi/{id}', [SesiController::class, 'index']);
