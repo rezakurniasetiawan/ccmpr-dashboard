@@ -18,6 +18,7 @@ Route::get('/decision-letter', [PenyisihanController::class, 'getDecisionLetter'
 // Where stage_id (stage_id) is the id of penyisihan
 Route::get('/sesi/{id}', [SesiController::class, 'index']);
 Route::get('/teams/{id}', [TeamsController::class, 'getTeams']);
+Route::post('/login', [TeamsController::class, 'Login']);
 
 
 // Game Play 1
