@@ -74,7 +74,7 @@ class StagesResource extends Resource
                     ->icon('heroicon-o-document-text')
                     ->label('Decision Letter')
                     ->url(fn($record) => route('filament.dashboard.resources.decision-letters.index', [
-                        'stage_id' => $record->stage_id,
+                        'stage_id' => $record->id,
                     ]))
                     ->color('warning'),
             ])->bulkActions([
