@@ -62,6 +62,17 @@ class AnswersRelationManager extends RelationManager
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\BulkAction::make('is_correct')
+                        ->action(function ($records) {
+                            foreach ($records as $record) {
+                                $record->update(['is_correct' => !$record->is_correct]);
+                            }
+                        })
+                        ->label('Tandai Sudah Dijawab')
+                        ->color('success')
+                        ->icon('heroicon-o-check')
+                        ->button()
+                        ->requiresConfirmation(),
                 ]),
             ]);
     }

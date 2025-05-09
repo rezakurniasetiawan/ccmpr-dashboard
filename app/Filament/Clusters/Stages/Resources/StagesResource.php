@@ -52,12 +52,6 @@ class StagesResource extends Resource
                     ->color(fn($record) => $record->name === 'Final' ? 'info' : 'danger')
                     ->searchable()
                     ->label('Stage Name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->label('Created At'),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->label('Updated At'),
             ])->filters([
                 //
             ])->actions([
@@ -75,6 +69,14 @@ class StagesResource extends Resource
                         'stage_id' => $record->id,
                     ]))
                     ->color('danger'),
+                Tables\Actions\Action::make('decision_letter')
+                    ->button()
+                    ->icon('heroicon-o-document-text')
+                    ->label('Decision Letter')
+                    ->url(fn($record) => route('filament.dashboard.resources.decision-letters.index', [
+                        'stage_id' => $record->stage_id,
+                    ]))
+                    ->color('warning'),
             ])->bulkActions([
                 //
             ])
