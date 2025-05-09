@@ -76,11 +76,11 @@ class TeamsResource extends Resource
                 Tables\Columns\TextColumn::make('total_score_before')
                     ->badge()
                     ->color('danger')
-                    ->label('Total Score Sebelum'),
+                    ->label('Total Score'),
                 Tables\Columns\TextColumn::make('total_score_after')
                     ->badge()
                     ->color('success')
-                    ->label('Total Score Setelah'),
+                    ->label('Score Setelah Pembobotan'),
             ])
             ->filters([
                 //
