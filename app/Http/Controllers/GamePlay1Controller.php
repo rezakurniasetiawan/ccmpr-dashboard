@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Themes;
+use App\Models\Answers;
 use App\Models\gamePlay1;
 use Illuminate\Http\Request;
 
@@ -47,5 +49,19 @@ class GamePlay1Controller extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getTheme($id)
+    {
+        $data = Themes::where('session_id', $id)
+            ->get();
+        return response()->json($data);
+    }
+
+    public function getThemeAnswer($id)
+    {
+        $data = Answers::where('theme_id', $id)
+            ->get();
+        return response()->json($data);
     }
 }

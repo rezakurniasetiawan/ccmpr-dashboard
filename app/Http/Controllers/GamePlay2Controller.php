@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\gamePlay2;
+use App\Models\Statements;
 use Illuminate\Http\Request;
+use App\Models\StatementsAnswers;
 
 class GamePlay2Controller extends Controller
 {
@@ -46,5 +48,36 @@ class GamePlay2Controller extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getStatements($id)
+    {
+        $data = Statements::where('session_id', $id)
+            ->get();
+        return response()->json($data);
+    }
+
+    public function getStatementsAnswers(Request $request){
+
+        
+        // validate the request
+        $request->validate([
+            'statements_id' => 'required|integer',
+            'type' => 'required|string',
+        ]);
+
+        if ($request->input('statements_id') == null || $request->input('type') == null) {
+            return response()->json(['error' => 'statements_id and type are required'], 400);
+        }
+
+        // get the statements_id and type from the request
+        $statements_id = $request->input('statements_id');
+        $type = $request->input('type');
+        $data = StatementsAnswers::where('statements_id', $statements_id)
+            ->where('type', $type)
+            ->get();
+
+        return response()->json($data);
+
     }
 }
