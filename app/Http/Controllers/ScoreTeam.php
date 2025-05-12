@@ -15,12 +15,12 @@ class ScoreTeam extends Controller
 
         
 
-        if ($request->type == 'seesion1') {
+        if ($request->type == 'session1') {
             $team = Teams::where('theme_id', $request->id)
                 ->where('stage_id', $request->stage_id)
                 ->select('score_sesi1')
                 ->first();
-        } elseif ($request->type == 'seesion2') {
+        } elseif ($request->type == 'session2') {
             $team = Teams::where('statement_id', $request->id)
                 ->where('stage_id', $request->stage_id)
                 ->select('score_sesi2')
