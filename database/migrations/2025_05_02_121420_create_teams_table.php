@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('total_score_before')->nullable();
             $table->integer('total_score_after')->nullable();
             $table->string('pro_kontra')->nullable();
+            $table->foreignId('theme_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('statement_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

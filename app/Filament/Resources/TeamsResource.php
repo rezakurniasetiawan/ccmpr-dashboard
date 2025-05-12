@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\TeamsResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\TeamsResource\RelationManagers;
+use Filament\Forms\Components\Select;
 
 class TeamsResource extends Resource
 {
@@ -94,6 +95,24 @@ class TeamsResource extends Resource
                         Section::make('Score Sesi 1')
                             ->description('Pilih Score Sesi 1')
                             ->schema([
+                                // thema
+                                Select::make('theme_id')
+                                    ->label('Tema')
+                                    ->relationship('theme', 'thema_text')
+                                    ->required()
+                                    ->default(fn($record) => $record->theme_id)
+                                    ->preload()
+                                    ->searchable()
+                                    ->reactive()
+                                    ->options(function () {
+                                        $usedThemes = \App\Models\Teams::where('stage_id', session('stage_id'))
+                                            ->whereNotNull('theme_id')
+                                            ->pluck('theme_id')
+                                            ->toArray();
+                                        return \App\Models\Themes::whereNotIn('id', $usedThemes)
+                                            ->pluck('thema_text', 'id');
+                                    }),
+
                                 Radio::make('score')
                                     ->label('Pilih Score')
                                     ->options([
@@ -138,6 +157,23 @@ class TeamsResource extends Resource
                         Section::make('Score Sesi 2')
                             ->description('Pilih Score Sesi 2')
                             ->schema([
+                                // statement_id
+                                Select::make('statement_id')
+                                    ->label('Pernyataan')
+                                    ->relationship('statement', 'box_name')
+                                    ->required()
+                                    ->default(fn($record) => $record->statement_id)
+                                    ->preload()
+                                    ->searchable()
+                                    ->reactive()
+                                    ->options(function () {
+                                        $usedStatements = \App\Models\Teams::where('stage_id', session('stage_id'))
+                                            ->whereNotNull('statement_id')
+                                            ->pluck('statement_id')
+                                            ->toArray();
+                                        return \App\Models\Statements::whereNotIn('id', $usedStatements)
+                                            ->pluck('box_name', 'id');
+                                    }),
                                 Radio::make('score')
                                     ->label('Pilih Score')
                                     ->options([
