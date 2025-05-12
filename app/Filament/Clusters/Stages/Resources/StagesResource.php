@@ -56,11 +56,11 @@ class StagesResource extends Resource
                 //
             ])->actions([
                 // edit action
-                Tables\Actions\EditAction::make()
-                    ->label('Edit')
-                    ->button()
-                    ->icon('heroicon-o-pencil')
-                    ->color('primary'),
+                // Tables\Actions\EditAction::make()
+                //     ->label('Edit')
+                //     ->button()
+                //     ->icon('heroicon-o-pencil')
+                //     ->color('primary'),
                 Tables\Actions\Action::make('teams')
                     ->button()
                     ->icon('heroicon-o-arrow-right')
@@ -98,7 +98,7 @@ class StagesResource extends Resource
         return [
             'index' => Pages\ListStages::route('/'),
             // 'create' => Pages\CreateStages::route('/create'),
-            'edit' => Pages\EditStages::route('/{record}/edit'),
+            // 'edit' => Pages\EditStages::route('/{record}/edit'),
         ];
     }
 }
