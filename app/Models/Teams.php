@@ -14,6 +14,8 @@ class Teams extends Model
     // $table->integer('score_sesi3')->nullable();
     // $table->integer('total_score_before')->nullable();
     // $table->integer('total_score_after')->nullable();
+    //    $table->foreignId('theme_id')->nullable()->constrained()->onDelete('cascade');
+    //         $table->foreignId('statement_id')->nullable()->constrained()->onDelete('cascade');
 
     protected $fillable = [
         'stage_id',
@@ -25,6 +27,22 @@ class Teams extends Model
         'total_score_before',
         'total_score_after',
         'pro_kontra',
+        'theme_id',
+        'statement_id',
     ];
     
+    public function stage()
+    {
+        return $this->belongsTo(Stages::class);
+    }
+
+    public function theme()
+    {
+        return $this->belongsTo(Themes::class);
+    }
+
+    public function statement()
+    {
+        return $this->belongsTo(Statements::class);
+    }
 }

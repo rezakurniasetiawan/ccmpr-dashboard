@@ -22,6 +22,8 @@ class GamePlay1Resource extends Resource
 
     protected static ?string $navigationGroup = 'GamePlay';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     public static function form(Form $form): Form
     {
         return $form

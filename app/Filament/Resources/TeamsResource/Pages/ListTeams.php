@@ -33,6 +33,9 @@ class ListTeams extends ListRecords
                         'score_sesi3' => null,
                         'total_score_before' => null,
                         'total_score_after' => null,
+                        'pro_kontra' => null,
+                        'theme_id' => null,
+                        'statement_id' => null,
                     ]);
 
                     // Delete scoreS3Team based on team_id

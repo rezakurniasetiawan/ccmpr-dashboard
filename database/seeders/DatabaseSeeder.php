@@ -51,10 +51,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Jawa Tengah',
         ]);
         $stages = [
-            ['province_id' => $province->id, 'kode' => 'P1', 'name' => 'Penyisihan 1'],
-            ['province_id' => $province->id, 'kode' => 'P2', 'name' => 'Penyisihan 2'],
-            ['province_id' => $province->id, 'kode' => 'P3', 'name' => 'Penyisihan 3'],
-            ['province_id' => $province->id, 'kode' => 'F', 'name' => 'Final'],
+            ['province_id' => $province->id, 'kode' => 'P1', 'name' => 'BABAK PENYISIHAN 1'],
+            ['province_id' => $province->id, 'kode' => 'P2', 'name' => 'BABAK PENYISIHAN 2'],
+            ['province_id' => $province->id, 'kode' => 'P3', 'name' => 'BABAK PENYISIHAN 3'],
+            ['province_id' => $province->id, 'kode' => 'F', 'name' => 'BABAK FINAL'],
         ];
 
         $stageIds = [];
@@ -64,18 +64,18 @@ class DatabaseSeeder extends Seeder
         }
 
         $stageSessions = [
-            ['stage_id' => $stageIds['Penyisihan 1'], 'name' => 'Sesi 1'],
-            ['stage_id' => $stageIds['Penyisihan 1'], 'name' => 'Sesi 2'],
-            ['stage_id' => $stageIds['Penyisihan 1'], 'name' => 'Sesi 3'],
-            ['stage_id' => $stageIds['Penyisihan 2'], 'name' => 'Sesi 1'],
-            ['stage_id' => $stageIds['Penyisihan 2'], 'name' => 'Sesi 2'],
-            ['stage_id' => $stageIds['Penyisihan 2'], 'name' => 'Sesi 3'],
-            ['stage_id' => $stageIds['Penyisihan 3'], 'name' => 'Sesi 1'],
-            ['stage_id' => $stageIds['Penyisihan 3'], 'name' => 'Sesi 2'],
-            ['stage_id' => $stageIds['Penyisihan 3'], 'name' => 'Sesi 3'],
-            ['stage_id' => $stageIds['Final'], 'name' => 'Sesi 1'],
-            ['stage_id' => $stageIds['Final'], 'name' => 'Sesi 2'],
-            ['stage_id' => $stageIds['Final'], 'name' => 'Sesi 3'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 1'], 'name' => 'Sesi 1'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 1'], 'name' => 'Sesi 2'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 1'], 'name' => 'Sesi 3'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 2'], 'name' => 'Sesi 1'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 2'], 'name' => 'Sesi 2'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 2'], 'name' => 'Sesi 3'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 3'], 'name' => 'Sesi 1'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 3'], 'name' => 'Sesi 2'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 3'], 'name' => 'Sesi 3'],
+            ['stage_id' => $stageIds['BABAK FINAL'], 'name' => 'Sesi 1'],
+            ['stage_id' => $stageIds['BABAK FINAL'], 'name' => 'Sesi 2'],
+            ['stage_id' => $stageIds['BABAK FINAL'], 'name' => 'Sesi 3'],
         ];
 
         foreach ($stageSessions as $stageSession) {
@@ -84,18 +84,18 @@ class DatabaseSeeder extends Seeder
 
 
         $teams = [
-            ['stage_id' => $stageIds['Penyisihan 1'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
-            ['stage_id' => $stageIds['Penyisihan 1'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
-            ['stage_id' => $stageIds['Penyisihan 1'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
-            ['stage_id' => $stageIds['Penyisihan 2'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
-            ['stage_id' => $stageIds['Penyisihan 2'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
-            ['stage_id' => $stageIds['Penyisihan 2'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
-            ['stage_id' => $stageIds['Penyisihan 3'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
-            ['stage_id' => $stageIds['Penyisihan 3'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
-            ['stage_id' => $stageIds['Penyisihan 3'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
-            ['stage_id' => $stageIds['Final'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
-            ['stage_id' => $stageIds['Final'], 'team_name' => 'Grup 10', 'school_name' => 'Sekolah 2'],
-            ['stage_id' => $stageIds['Final'], 'team_name' => 'Grup 11', 'school_name' => 'Sekolah 3'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 1'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 1'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 1'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 2'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 2'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 2'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 3'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 3'], 'team_name' => 'Grup 2', 'school_name' => 'Sekolah 2'],
+            ['stage_id' => $stageIds['BABAK PENYISIHAN 3'], 'team_name' => 'Grup 3', 'school_name' => 'Sekolah 3'],
+            ['stage_id' => $stageIds['BABAK FINAL'], 'team_name' => 'Grup 1', 'school_name' => 'Sekolah 1'],
+            ['stage_id' => $stageIds['BABAK FINAL'], 'team_name' => 'Grup 10', 'school_name' => 'Sekolah 2'],
+            ['stage_id' => $stageIds['BABAK FINAL'], 'team_name' => 'Grup 11', 'school_name' => 'Sekolah 3'],
 
         ];
         foreach ($teams as $item) {

@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\ScoreTeam;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SesiController;
+use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\GamePlay1Controller;
 use App\Http\Controllers\GamePlay2Controller;
 use App\Http\Controllers\GamePlay3Controller;
 use App\Http\Controllers\PenyisihanController;
-use App\Http\Controllers\TeamsController;
 
 Route::get('/game1', [GamePlay1Controller::class, 'index']);
 Route::get('/game2', [GamePlay2Controller::class, 'index']);
@@ -43,3 +44,8 @@ Route::prefix('sesi3')->group(function () {
     // Where stageSession_id (sesi_id) is the id of stageSession
     Route::get('/{id}', [GamePlay3Controller::class, 'index']);
 });
+
+
+// Score Team
+
+Route::post('/score', [ScoreTeam::class, 'getScore']);
