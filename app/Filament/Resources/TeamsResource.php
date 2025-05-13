@@ -159,7 +159,7 @@ class TeamsResource extends Resource
                             ->schema([
                                 // statement_id
                                 Select::make('statement_id')
-                                    ->label('Pernyataan')
+                                    ->label('Amplop')
                                     ->relationship('statement', 'box_name')
                                     ->required()
                                     ->default(fn($record) => $record->statement_id)
