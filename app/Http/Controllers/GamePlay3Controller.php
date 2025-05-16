@@ -15,9 +15,15 @@ class GamePlay3Controller extends Controller
         // session_id dan stage_id
         $session_id = $request->input('stage_session_id');
         $stage_id = $request->input('stage_id');
+
+        // Validate required parameters
+        if (empty($session_id) || empty($stage_id)) {
+            return response()->json(['error' => 'stage_session_id and stage_id are required.'], 400);
+        }
+
         // get game 3 to json response
         $data = QuestionsAnswers::where('session_id', $session_id)
-            ->where('stage_id',  $stage_id)
+            ->where('stage_id', $stage_id)
             ->get();
         return response()->json($data);
     }
