@@ -110,6 +110,7 @@ class TeamsResource extends Resource
                                             ->pluck('theme_id')
                                             ->toArray();
                                         return \App\Models\Themes::whereNotIn('id', $usedThemes)
+                                            ->where('stage_id', session('stage_id'))
                                             ->pluck('thema_text', 'id');
                                     }),
 
@@ -172,6 +173,7 @@ class TeamsResource extends Resource
                                             ->pluck('statement_id')
                                             ->toArray();
                                         return \App\Models\Statements::whereNotIn('id', $usedStatements)
+                                            ->where('stage_id', session('stage_id'))
                                             ->pluck('box_name', 'id');
                                     }),
                                 Radio::make('score')
