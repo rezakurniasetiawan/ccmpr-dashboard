@@ -42,7 +42,7 @@ Route::prefix('sesi2')->group(function () {
 // Game Play 3
 Route::prefix('sesi3')->group(function () {
     // Where stageSession_id (sesi_id) is the id of stageSession
-    Route::get('/{id}', [GamePlay3Controller::class, 'index']);
+    Route::post('/', [GamePlay3Controller::class, 'index']);
 });
 
 
