@@ -179,11 +179,13 @@
             </p>
 
             <!-- Tombol unduh -->
-            <a href="app-release.apk" download
-                onclick="toggleModal(true); animateButton(this);"
+            <a href="app-release.apk" download onclick="toggleModal(true); animateButton(this);"
                 class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-full text-center block transition">
                 <i class="ph ph-download-simple mr-2"></i>Unduh APK Sekarang
             </a>
+            <p id="apk-update-info" class="text-sm text-white mt-2 text-center">
+                Memuat informasi pembaruan...
+            </p>
         </div>
     </div>
 
@@ -207,6 +209,40 @@
             }, 300); // Durasi animasi 0.3 detik
         }
     </script>
+    <script>
+        // Ubah sesuai dengan nama file dan lokasi kamu
+        const apkUrl = 'app-release.apk';
+
+        fetch(apkUrl, {
+                method: 'HEAD'
+            })
+            .then(response => {
+                const lastModified = response.headers.get('Last-Modified');
+                if (lastModified) {
+                    const updateDate = new Date(lastModified);
+                    const formattedDate = updateDate.toLocaleString('id-ID', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    });
+
+                    document.getElementById('apk-update-info').textContent =
+                        `Terakhir diperbarui pada ${formattedDate}`;
+                } else {
+                    document.getElementById('apk-update-info').textContent =
+                        'Tanggal pembaruan tidak tersedia.';
+                }
+            })
+            .catch(() => {
+                document.getElementById('apk-update-info').textContent =
+                    'Gagal memuat informasi pembaruan.';
+            });
+    </script>
+
 
 
 </body>
