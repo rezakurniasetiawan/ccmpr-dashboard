@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Stages\Resources\QuestionsAnswersResource\Pages;
 
 use App\Filament\Clusters\Stages\Resources\QuestionsAnswersResource;
+use App\Imports\QuestionAnswersImport;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -14,6 +15,9 @@ class ListQuestionsAnswers extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            \EightyNine\ExcelImport\ExcelImportAction::make()
+                ->color("success")
+                ->use(QuestionAnswersImport::class),
         ];
     }
 

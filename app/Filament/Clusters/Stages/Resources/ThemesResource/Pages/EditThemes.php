@@ -21,4 +21,12 @@ class EditThemes extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    public function mount($record): void
+    {
+        parent::mount($record);
+
+        // Simpan ID ke dalam session
+        session(['theme_id' => $record]);
+    }
 }

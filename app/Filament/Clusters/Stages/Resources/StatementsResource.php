@@ -95,7 +95,10 @@ class StatementsResource extends Resource
                     ->button()
                     ->icon('heroicon-o-arrow-right')
                     ->label('Lanjutkan')
-                    ->color('primary'),
+                    ->color('primary')
+                    ->beforeFormFilled(function ($record) {
+                        session(['statements_id' => $record->id]);
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

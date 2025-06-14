@@ -16,4 +16,13 @@ class EditStatements extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    // statements_id
+    public function mount($record): void
+    {
+        parent::mount($record);
+
+        // Simpan ID ke dalam session
+        session(['statements_id' => $record]);
+    }
 }

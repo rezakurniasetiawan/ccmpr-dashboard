@@ -3,13 +3,14 @@
 namespace App\Filament\Clusters\Stages\Resources\StatementsResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\RelationManagers\RelationManager;
+use EightyNine\ExcelImport\Tables\ExcelImportRelationshipAction;
 
 class StatementsAnswersRelationManager extends RelationManager
 {
@@ -65,6 +66,9 @@ class StatementsAnswersRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
+                ExcelImportRelationshipAction::make()
+                    ->color('success')
+                    ->use(\App\Imports\StatementsAnswersImport::class)
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

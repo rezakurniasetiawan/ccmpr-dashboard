@@ -2,9 +2,10 @@
 
 namespace App\Filament\Clusters\Stages\Resources\StatementsResource\Pages;
 
-use App\Filament\Clusters\Stages\Resources\StatementsResource;
 use Filament\Actions;
+use App\Imports\StatementImport;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Clusters\Stages\Resources\StatementsResource;
 
 class ListStatements extends ListRecords
 {
@@ -14,6 +15,9 @@ class ListStatements extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            \EightyNine\ExcelImport\ExcelImportAction::make()
+                ->color("success")
+                ->use(StatementImport::class),
         ];
     }
 

@@ -2,9 +2,10 @@
 
 namespace App\Filament\Clusters\Stages\Resources\ThemesResource\Pages;
 
-use App\Filament\Clusters\Stages\Resources\ThemesResource;
 use Filament\Actions;
+use App\Imports\ThemeImport;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Clusters\Stages\Resources\ThemesResource;
 
 class ListThemes extends ListRecords
 {
@@ -13,12 +14,10 @@ class ListThemes extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            // Actions\Action::make('Back')
-            //     ->label('Back')
-            //     ->color('gray')
-            //     ->url(url()->previous())
-            //     ->icon('heroicon-m-arrow-left'),
             Actions\CreateAction::make(),
+            \EightyNine\ExcelImport\ExcelImportAction::make()
+                ->color("success")
+                ->use(ThemeImport::class),
 
         ];
     }
